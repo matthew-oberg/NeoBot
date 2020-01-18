@@ -35,6 +35,7 @@ public class TurnAction implements Action {
 
         while (!Robot.base.turnOnTarget()) {
             counter++;
+            Robot.base.snapToAngle();
 
             if (counter == 10000) {
                 status = -1;

@@ -35,6 +35,7 @@ public class DriveAction implements Action {
 
         while (!Robot.base.driveOnTarget()) {
             counter++;
+            Robot.base.distanceDrive();
 
             if (counter == 10000) {
                 status = -1;
