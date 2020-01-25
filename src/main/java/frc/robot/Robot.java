@@ -1,11 +1,13 @@
 package frc.robot;
 
+import com.revrobotics.Rev2mDistanceSensor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 
 import frc.robot.sensors.ColorSensor;
+import frc.robot.sensors.DistanceSensor;
 import frc.robot.subsystems.DriveBase;
 
 public class Robot extends TimedRobot {
@@ -16,17 +18,21 @@ public class Robot extends TimedRobot {
 
     public static DriveBase base = new DriveBase(3, 4, 1, 2);
 
-    public static ColorSensor color = new ColorSensor(I2C.Port.kOnboard);
+    public static DistanceSensor dist = new DistanceSensor(Rev2mDistanceSensor.Port.kOnboard);
+
+    public static ColorSensor color = new ColorSensor(I2C.Port.kMXP);
 
     @Override
     public void robotInit() {
         base.initialize();
+        dist.initialize();
     }
 
     @Override
     public void teleopInit() {
         base.initialize();
         base.reset();
+        dist.initialize();
     }
 
     @Override
@@ -54,6 +60,7 @@ public class Robot extends TimedRobot {
 
     public void dashboard() {
         base.dashboard();
+        dist.dashboard();
         color.dashboard();
     }
 
